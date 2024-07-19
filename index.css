@@ -1,0 +1,48 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	background: #bbbbbb;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+#canvas {
+	border-collapse: collapse;
+}
+
+#canvas .cell-row {
+}
+
+#canvas .cell {
+	width: 12px;
+	height: 12px;
+	border: 1px solid #000;
+	cursor: pointer;
+}
+
+#canvas .cell.selected {
+	background-color: #ffff00;
+}
+
+.btn {
+	width: 200px;
+	height: 80px;
+	font-size: 20px;
+	outline: none;
+	background: skyblue;
+	cursor: pointer;
+	border: none;
+	margin: 1rem;
+}
+
+.hide {
+	display: none;
+}
