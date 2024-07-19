@@ -6,24 +6,32 @@
 
 html {
 	background: #bbbbbb;
+
+	/* overflow: scroll; */
+}
+
+body {
+	/* overflow: scroll; */
 }
 
 html,
 body {
 	width: 100%;
 	height: 100%;
+	/* overflow: scroll; */
 }
 
 #canvas {
 	border-collapse: collapse;
+	overflow: scroll;
 }
 
 #canvas .cell-row {
 }
 
 #canvas .cell {
-	width: 12px;
-	height: 12px;
+	width: 15px;
+	height: 15px;
 	border: 1px solid #000;
 	cursor: pointer;
 }
