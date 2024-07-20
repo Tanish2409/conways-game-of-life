@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	 * @type {HTMLButtonElement}
 	 */
 	const generateBtn = document.getElementById('generate-btn');
-	generateBtn.addEventListener('click', () => {});
+	generateBtn.addEventListener('click', generateRandomUI);
 
 	/**
 	 * @description Initial ROWS x COLS grid to be rendered in the UI
@@ -108,14 +108,54 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
+	/**
+	 * @description resets the UI to an empty grid
+	 */
 	function resetUI() {
-		let gridState = Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
+		initialCellGrid = Array.from({ length: ROWS }, () =>
+			new Array(COLS).fill(0)
+		);
 
-		resetBtn.setAttribute('disabled', '');
-
-		updateUI(gridState);
+		updateUI(initialCellGrid);
 	}
 
+	/**
+	 * @description Generates a random UI with populated cells
+	 */
+	function generateRandomUI() {
+		resetUI();
+
+		let cellsToFill = (ROWS * COLS) / 4;
+
+		while (cellsToFill >= 0) {
+			const row = Math.floor(Math.random() * ROWS);
+			const col = Math.floor(Math.random() * COLS);
+
+			initialCellGrid[row][col] = 1;
+
+			const cell = document.querySelector(
+				`[data-row='${row}'][data-col='${col}']`
+			);
+
+			cell.classList.add('selected');
+
+			cellsToFill--;
+		}
+	}
+
+	/**
+	 * @description Caculate the state of the single cell based on it's neighbours
+	 *
+	 * @param {Object} params
+	 * @param {number[][]} params.gridState The complete grid state
+	 * @param {Object} params.coords - Coordinates of a single cell in the grid
+	 * @param {number} params.coords.row
+	 * @param {number} params.coords.col
+	 *
+	 * @returns {0|1} - If cell should be populated or unpopulated
+	 * - 1 -> if cell should be populated
+	 * - 0 -> if cell should be unpopulated
+	 */
 	function calcCellState({ gridState, coords }) {
 		let neighbours = 0;
 
@@ -150,6 +190,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		return newState;
 	}
 
+	/**
+	 * @description Calculate the next updated state from the current grid state
+	 *
+	 * @param {number[][]} currGridState Current state of the grid
+	 *
+	 * @returns {number[][]} returns the new updated grid state
+	 */
 	function calcUpdatedGridState(currGridState) {
 		// creating a copy because the complete next state is calculated from the whole current state
 		// thus can't update the current state one by one. It needs to be updated as a whole.
@@ -170,10 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		return updatedState;
 	}
 
-	function startGame(event) {
+	function startGame() {
 		startBtn.setAttribute('disabled', '');
 		stopBtn.removeAttribute('disabled');
 		resetBtn.setAttribute('disabled', '');
+		generateBtn.setAttribute('disabled', '');
 
 		startGameIntervalId = setInterval(() => {
 			initialCellGrid = calcUpdatedGridState(initialCellGrid);
@@ -185,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		stopBtn.setAttribute('disabled', '');
 		startBtn.removeAttribute('disabled');
 		resetBtn.removeAttribute('disabled');
+		generateBtn.removeAttribute('disabled');
 
 		clearInterval(startGameIntervalId);
 	}
