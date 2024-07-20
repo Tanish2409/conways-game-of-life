@@ -166,8 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					// to check if the neighbour is inside the bounds of the grid
 					coords.row + i >= 0 &&
 					coords.row + i < ROWS &&
-					coords.row + j >= 0 &&
-					coords.row + j < COLS &&
+					coords.col + j >= 0 &&
+					coords.col + j < COLS &&
 					// to check if it's not the current cell
 					(i !== 0 || j !== 0)
 				) {
