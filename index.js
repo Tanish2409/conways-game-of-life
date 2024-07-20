@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	 * @param {number} params.coords.row
 	 * @param {number} params.coords.col
 	 *
-	 * @returns {0|1} - If cell should be populated or unpopulated
+	 * @returns {0|1} If cell should be populated or unpopulated
 	 * - 1 -> if cell should be populated
 	 * - 0 -> if cell should be unpopulated
 	 */
