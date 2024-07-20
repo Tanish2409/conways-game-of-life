@@ -27,6 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	stopBtn.addEventListener('click', stopGame);
 
 	/**
+	 * @type {HTMLButtonElement}
+	 */
+	const resetBtn = document.getElementById('reset-btn');
+	resetBtn.addEventListener('click', resetUI);
+
+	/**
+	 * @type {HTMLButtonElement}
+	 */
+	const generateBtn = document.getElementById('generate-btn');
+	generateBtn.addEventListener('click', () => {});
+
+	/**
 	 * @description Initial ROWS x COLS grid to be rendered in the UI
 	 * @type {number[][]}
 	 */
@@ -96,6 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
+	function resetUI() {
+		let gridState = Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
+
+		resetBtn.setAttribute('disabled', '');
+
+		updateUI(gridState);
+	}
+
 	function calcCellState({ gridState, coords }) {
 		let neighbours = 0;
 
@@ -153,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	function startGame(event) {
 		startBtn.setAttribute('disabled', '');
 		stopBtn.removeAttribute('disabled');
+		resetBtn.setAttribute('disabled', '');
 
 		startGameIntervalId = setInterval(() => {
 			initialCellGrid = calcUpdatedGridState(initialCellGrid);
@@ -163,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	function stopGame() {
 		stopBtn.setAttribute('disabled', '');
 		startBtn.removeAttribute('disabled');
+		resetBtn.removeAttribute('disabled');
 
 		clearInterval(startGameIntervalId);
 	}
