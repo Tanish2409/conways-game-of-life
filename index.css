@@ -4,53 +4,128 @@
 	box-sizing: border-box;
 }
 
-html {
-	background: #bbbbbb;
-
-	/* overflow: scroll; */
+.pixelify-sans {
+	font-family: 'Pixelify Sans', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
 }
 
-body {
-	/* overflow: scroll; */
+html {
+	background-image: url('/assets/background.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 html,
 body {
 	width: 100%;
 	height: 100%;
-	/* overflow: scroll; */
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem 0;
+}
+
+.heading {
+	background: linear-gradient(83deg, #3ce5b5 15.74%, #58b4ae);
+	background-clip: text;
+
+	font-size: 64px;
+
+	text-align: center;
+	color: transparent;
+
+	margin-bottom: 1.5rem;
+}
+
+.canvas-container {
+	padding: 2rem 8rem;
+
+	background: rgba(34, 7, 70, 0.15);
+	box-shadow: 0 0px 42px 10px rgba(66, 31, 135, 0.47) inset;
+	backdrop-filter: blur(5.5px);
+	-webkit-backdrop-filter: blur(4.5px);
+	border-radius: 10px;
+
+	position: relative;
+}
+
+.shadow {
+	width: 400px;
+	height: 150px;
+	border-radius: 100%;
+	filter: blur(90px);
+
+	position: absolute;
+}
+
+.shadow.shadow-1 {
+	background-color: rgba(51, 92, 139, 0.75);
+
+	top: 10%;
+	left: -15%;
+}
+
+.shadow.shadow-2 {
+	background-color: rgba(203, 111, 104, 0.345);
+
+	filter: blur(60px);
+
+	width: 500px;
+	height: 200px;
+
+	top: 50%;
+	right: -10%;
 }
 
 #canvas {
 	border-collapse: collapse;
-	overflow: scroll;
-}
 
-#canvas .cell-row {
+	position: relative;
+	z-index: 2;
 }
 
 #canvas .cell {
-	width: 15px;
-	height: 15px;
-	border: 1px solid #000;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #7e9790;
 	cursor: pointer;
 }
 
 #canvas .cell.selected {
-	background-color: #ffff00;
+	background-color: #75e3d4;
+}
+
+.btn-grp {
+	display: flex;
 }
 
 .btn {
-	width: 200px;
-	height: 80px;
+	width: 150px;
+	height: 50px;
+
+	border-radius: 40px;
 	font-size: 20px;
 	outline: none;
-	background: skyblue;
+
+	color: white;
+
+	box-shadow: 0 0 30px 5px #b3f4e1b5;
+
+	background: linear-gradient(83deg, #3ce5b5 15.74%, #58b4ae);
+
 	cursor: pointer;
 	border: none;
-	margin: 1rem;
+	margin: 2rem;
 }
 
-.hide {
-	display: none;
+.btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
 }

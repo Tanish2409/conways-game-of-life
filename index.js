@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const ROWS = 40;
-	const COLS = 40;
+	const ROWS = 30;
+	const COLS = 30;
 
 	/**
 	 * @description To globally store the setInterval id when the game is started.
@@ -150,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		return updatedState;
 	}
 
-	function startGame() {
-		startBtn.classList.add('hide');
-		stopBtn.classList.remove('hide');
+	function startGame(event) {
+		startBtn.setAttribute('disabled', '');
+		stopBtn.removeAttribute('disabled');
 
 		startGameIntervalId = setInterval(() => {
 			initialCellGrid = calcUpdatedGridState(initialCellGrid);
@@ -161,8 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function stopGame() {
-		startBtn.classList.remove('hide');
-		stopBtn.classList.add('hide');
+		stopBtn.setAttribute('disabled', '');
+		startBtn.removeAttribute('disabled');
+
 		clearInterval(startGameIntervalId);
 	}
 

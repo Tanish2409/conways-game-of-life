@@ -3,14 +3,34 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Roc8 Moonshot</title>
+
+		<!-- Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Stylesheet -->
 		<link rel="stylesheet" href="index.css" />
 	</head>
 	<body>
-		<table id="canvas"></table>
+		<div class="heading-container">
+			<h1 class="pixelify-sans heading">Conway's Game of Life</h1>
+		</div>
 
-		<button id="start-btn" class="btn start-btn">Start</button>
-		<button id="stop-btn" class="btn stop-btn hide">Stop</button>
+		<div class="canvas-container">
+			<table id="canvas"></table>
+			<span class="shadow shadow-1"></span>
+			<span class="shadow shadow-2"></span>
+		</div>
+
+		<div class="btn-group">
+			<button id="start-btn" class="btn start-btn">Start</button>
+			<button id="stop-btn" class="btn stop-btn" disabled>Stop</button>
+		</div>
 
 		<script src="index.js"></script>
 	</body>
